@@ -20,6 +20,9 @@ const Section = styled("div")(({ theme }) => ({
   "& .specialFilm": {
     height: "700px",
     position: "relative",
+    [theme.breakpoints.down("md")]: {
+      height: "500px",
+    },
     "& .overlay": {
       position: "absolute",
       inset: " 0 0 0 0",
@@ -32,6 +35,13 @@ const Section = styled("div")(({ theme }) => ({
       height: "100%",
       paddingLeft: "5rem",
       background: "rgba(0,0,0,.8)",
+      [theme.breakpoints.down("md")]: {
+        width: "100%",
+        background: "rgba(0,0,0,.4)",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        height: "100%",
+      },
       "&::before": {
         content: '""',
         position: "absolute",

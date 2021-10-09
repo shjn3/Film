@@ -16,6 +16,9 @@ const Section = styled("div")(({ theme }) => ({
     "&>*": {
       flex: 1,
     },
+    [theme.breakpoints.down("md")]: {
+      flexDirection: "column",
+    },
   },
 }));
 const PricingComponent = () => {

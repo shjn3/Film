@@ -24,6 +24,11 @@ const WrapCard = styled("div")(({ theme }) => ({
     lineHeight: 2,
     position: "relative",
   },
+  [theme.breakpoints.down("md")]: {
+    "&:hover": {
+      transform: "translateY(0px)",
+    },
+  },
   "& .card__content": {
     fontSize: "1.5rem",
     "&--title": {
@@ -161,6 +166,18 @@ export const CardLatestMovie: FC = () => {
   );
 };
 
+interface CardIntroduce {
+  listIntroduce: {
+    id: number;
+    src: string;
+    link: string;
+    description?: string;
+    star?: string;
+    type?: string;
+    age?: string;
+  };
+  active: boolean;
+}
 const WrapCardIntroduce = styled("div")(({ theme }) => ({
   height: "700px",
   width: "100%",
@@ -224,15 +241,18 @@ const WrapCardIntroduce = styled("div")(({ theme }) => ({
         transform: "translateY(-50px)",
         opacity: 0,
         visibility: "hidden",
-        transition: "all .1s ease-in-out",
-        "&.delay-2": {
-          transitionDelay: ".2s",
-        },
-        "&.delay-4": {
-          transitionDelay: ".4s",
-        },
-        "&.delay-6": {
-          transitionDelay: ".6s",
+        transition: "all 1s ease-in-out",
+      },
+    },
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      background: "rgba(0,0,0,.4)",
+      "& .Introduce__content": {
+        paddingLeft: "3rem",
+        paddingRight: "2rem",
+        "&--description": {
+          fontSize: "1rem",
+          lineHeight: "1.3",
         },
       },
     },
@@ -244,15 +264,28 @@ const WrapCardIntroduce = styled("div")(({ theme }) => ({
           transform: "translateY(0)",
           opacity: 1,
           visibility: "visible",
+          "&.delay-2": {
+            transitionDelay: ".2s",
+          },
+          "&.delay-4": {
+            transitionDelay: ".4s",
+          },
+          "&.delay-6": {
+            transitionDelay: ".6s",
+          },
         },
       },
     },
   },
+  [theme.breakpoints.down("md")]: {
+    height: "500px",
+  },
 }));
-export const CardIntroduce: FC = () => {
+export const CardIntroduce: FC<CardIntroduce> = ({ listIntroduce, active }) => {
+  const { src, link, description } = listIntroduce;
   return (
-    <WrapCardIntroduce className="active">
-      <Image src="/images/black-banner.png" alt="" layout="fill" />
+    <WrapCardIntroduce className={active ? "active" : ""}>
+      <Image src={src} alt="" layout="fill" />
       <div className="overlay"></div>
       <div className="Introduce__wrapContent">
         <div className="Introduce__content">
@@ -260,7 +293,7 @@ export const CardIntroduce: FC = () => {
             variant="h1"
             className="Introduce__content--title top-down"
           >
-            Black Panther
+            {description}
           </Typography>
           <div className="Introduce__content--movieInfos top-down delay-2">
             <div>
@@ -282,7 +315,7 @@ export const CardIntroduce: FC = () => {
           </Typography>
           <div className="Introduce__content--watchNow top-down delay-6">
             <ButtonSignIn>
-              <Link href="#">
+              <Link href={link}>
                 <a>
                   <PlayArrowIcon />
                   <span>WATCH NOW</span>
@@ -336,18 +369,26 @@ const WrapCardTopFilm = styled("div")(({ theme }) => ({
     },
   },
 }));
-export const CardTopFilm: FC = () => {
+
+interface CardTopFilm {
+  listTopFilm: {
+    id: number;
+    src: string;
+    link: string;
+    description?: string;
+    star?: string;
+    type?: string;
+    age?: string;
+  };
+}
+export const CardTopFilm: FC<CardTopFilm> = ({ listTopFilm }) => {
+  const { src, description } = listTopFilm;
   return (
     <WrapCardTopFilm>
-      <Image
-        src="/images/movies/bat-man.jpg"
-        alt=""
-        layout="fill"
-        className="imgBanner"
-      />
+      <Image src={src} alt="" layout="fill" className="imgBanner" />
       <div className="topFilm__content">
         <Typography variant="h4" className="topFilm__content--title">
-          The Dark Knight
+          {description}
         </Typography>
         <div className="topFilm__content--movieInfos">
           <div>

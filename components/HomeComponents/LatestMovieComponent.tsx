@@ -38,7 +38,7 @@ const Section = styled("div")(({ theme }) => ({
       },
     },
     "& .btnNext": {
-      right: 10,
+      right: 20,
     },
     "& .btnPrev": {
       left: 10,
@@ -52,6 +52,22 @@ const Section = styled("div")(({ theme }) => ({
       "&__wrapItem": {
         width: `calc(12.5% - ${theme.spacing(2)})`,
         marginRight: theme.spacing(2),
+      },
+      [theme.breakpoints.down("md")]: {
+        width: `calc((100vw - 2 * ${theme.spacing(5)} - 2 * ${theme.spacing(
+          2
+        )}) * 4)`,
+        "&__wrapItem": {
+          width: `calc(25% - ${theme.spacing(2)})`,
+        },
+      },
+      [theme.breakpoints.down(700)]: {
+        width: `calc((100vw - 2 * ${theme.spacing(5)} - 2 * ${theme.spacing(
+          2
+        )}) * 8)`,
+        "&__wrapItem": {
+          width: `calc(50% - ${theme.spacing(2)})`,
+        },
       },
     },
   },
@@ -76,16 +92,16 @@ const LatestMovieComponent = () => {
           <KeyboardArrowRightIcon className="carouselIcon" />
         </div>
         <div className="latestMovie__content">
-          <div className="latestMovie__content__wrapItem active">
+          <div className="latestMovie__content__wrapItem">
             <CardLatestMovie />
           </div>
-          <div className="latestMovie__content__wrapItem active">
+          <div className="latestMovie__content__wrapItem">
             <CardLatestMovie />
           </div>
-          <div className="latestMovie__content__wrapItem active">
+          <div className="latestMovie__content__wrapItem">
             <CardLatestMovie />
           </div>
-          <div className="latestMovie__content__wrapItem active">
+          <div className="latestMovie__content__wrapItem">
             <CardLatestMovie />
           </div>
           <div className="latestMovie__content__wrapItem">
